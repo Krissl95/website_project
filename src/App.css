@@ -1,0 +1,11 @@
+* { margin: 0; padding: 0; }
+
+.Page-container {
+    display: flex; 
+    flex-direction: column;
+    min-height: 100vh; 
+}
+.Navbar-section {
+    flex: 1;
+}
+
