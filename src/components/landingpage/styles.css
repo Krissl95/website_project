@@ -1,0 +1,15 @@
+.mainLandingPage {
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, serif;
+    min-height: 100vh;
+}
+.landingPage {
+
+}
+.landingPageSection1 {
+    background-image: url('../../images/background.jpg');
+    background-position: center;
+    height: 30vh;
+    color: #fff;
+}

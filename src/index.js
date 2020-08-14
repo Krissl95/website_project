@@ -5,12 +5,11 @@ import * as serviceWorker from './serviceWorker'
 import { BrowserRouter } from 'react-router-dom';
 import App from './App'
 
-
 const firebase = require("firebase");
 require("firebase/firestore");
 
 firebase.initializeApp({
-  apiKey: "AIzaSyCkapHiuxVogGXkN98-nMmGlsPxfUjGH38",
+  apiKey: process.env.REACT_APP_SECRET_KEY,
   authDomain: "im-tutorial-86a9c.firebaseapp.com",
   databaseURL: "https://im-tutorial-86a9c.firebaseio.com",
   projectId: "im-tutorial-86a9c",
