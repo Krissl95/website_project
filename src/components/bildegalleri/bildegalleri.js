@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import UploadForm from './uploadform.js'
 import ImageGrid from './imagegrid'
-import Modal from './modal'
 import './bildegalleri.css'
 
 const firebase = require("firebase");
 
-const BildeGalleriComponent = () => {
-    const [selectedImg, setSelectedImg] = useState(null);
+export default function BildeGalleriComponent() {
+
     const [loggedIn, setLoggedIn] = useState(false);
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(_usr => {
@@ -19,6 +19,7 @@ const BildeGalleriComponent = () => {
             } else {
                 setLoggedIn(false)
             }
+            setIsLoading(false)
         })
     })
 
@@ -29,10 +30,9 @@ const BildeGalleriComponent = () => {
                 <UploadForm />
                 : null
             }
-            <ImageGrid setSelectedImg={setSelectedImg} loggedIn={loggedIn} />
-            { selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />}
+            {
+                isLoading ? <div className="isLoadingGalleri"><p>Loading...</p></div> : <ImageGrid loggedIn={loggedIn} />
+            }
         </div>
     );
 }
-
-export default BildeGalleriComponent;

@@ -8,7 +8,7 @@
 .chatTextBoxContainer {
   position: absolute;
   width: calc(100% - 300px - 50px);
-  bottom: 115px;
+  top: 900px;
   left: 315px;
   overflow: auto;
   box-sizing: border-box;
@@ -18,14 +18,9 @@
 }
 @media all and (max-width: 900px) {
   .chatTextBoxContainer {
-    position: absolute;
-    width: calc(100% - 300px - 50px);
-    width: auto;
-    bottom: 115px;
+    position: relative; 
     left: 10px;
-    right: 10px;
-    overflow: auto;
-    box-sizing: border-box;
+    top: 80vh;
   }
   .sendBtn {
     color: blue;
@@ -33,6 +28,13 @@
   }
   .sendBtn:hover {
     color: gray;
+  }
+  .chatTextBoxContainer {
+    display: flex;
+    position: relative;
+    width: calc(80%);
+    margin: auto;
+
   }
 }
 

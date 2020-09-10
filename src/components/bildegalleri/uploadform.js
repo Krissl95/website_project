@@ -29,7 +29,7 @@ const UploadForm = () => {
                 variant="contained"
                 color="default"
                 startIcon={<CloudUploadIcon />}
-                style={{cursor: 'default'}}
+                style={{cursor: 'default', marginBottom: '30px', marginTop: '100px'}}
             >
                 <label style={{cursor: 'pointer'}}>
                 <input style={{display: 'none'}} type="file" />

@@ -1,35 +1,339 @@
-.mainMainOmMeg {
-    position: relative;
-    height: 100vh;
+.omMegContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+.section1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url('../../images/background.jpg');
+    background-repeat: no-repeat;
+    background-position-y: -50vh;
+    width: 100%;
+    height: 50vh;
+}
+
+.section2 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    top: 50vh;
+    left: 0;
+    background: #FFFFFF;;
+    width: 100%;
+    height: 50vh;
+}
+
+.section2Innerdiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+    height: 50vh;
+    font-size: 1.1em;
+    line-height: 2em;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.section3 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    top: 100vh;
+    left: 0;
+    background: lightgrey;
+    width: 100%;
+    height: 50vh;
+}
+
+.section3Innerdiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 40%;
+    height: 50vh;  
+    font-family: 'Times New Roman', Times, serif;  
+}
+
+.section4 {
+    position: absolute;
+    top: 150vh;
+    left: 0;
     width: 100%;
 }
-.mainDivOmMeg {
-    background-color: #fff;
-    height: 600px;
-    width: 1300px;
+
+@media screen and (max-width: 750px) {
+    .section1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url('../../images/background.jpg');
+        background-repeat: no-repeat;
+        background-position-y: -60vh;
+        background-position-x: -80vw;
+        width: 100%;
+        height: 50vh;
+    }
+
+    .section2Innerdiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 90%;
+        height: 50vh;
+        font-size: 1em;
+        line-height: 2em;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .section3Innerdiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        width: 90%;
+        height: 50vh;  
+        font-family: 'Times New Roman', Times, serif;  
+    }
+
+    .section4 {
+        display: flex;
+        position: absolute;
+        top: 150vh;
+        left: 0;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .section1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url('../../images/background.jpg');
+        background-repeat: no-repeat;
+        background-position-y: -65vh;
+        background-position-x: -185vw;
+        width: 100%;
+        height: 50vh;
+    }
+
+    .section2Innerdiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 95%;
+        height: 50vh;
+        font-size: 0.8em;
+        line-height: 2em;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .section3Innerdiv {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        height: 50vh;  
+        font-size: 0.8em;
+        font-family: 'Times New Roman', Times, serif;  
+    }
+
+    .section4 {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 150vh;
+        height: 120vh;
+        left: 0;
+        width: 100%;
+    }
+}
+
+
+/*
+.omMegContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     position: absolute;
-    margin: auto;
-    top: -10vh;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    display: inline-grid;
-    grid-template-columns: 50% 50%;
-    border-radius: 8px;
+    width: 100%;
+    top: 70px;
+    height: auto;
 }
-.leftSectionOmMeg {
-    background-image: url('../../images/testimg.jpg');
-    background-size: 100%;
-    border-radius: 8px;
-    margin: 15px 15px 15px 15px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+.section1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../images/background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
 }
-.rightSectionOmMeg {
-    margin: 15px 15px 15px 15px;
+
+.section2 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: #FFFFFF;;
+    width: 100%;
+    height: 40vh;
+    margin-top: 60px;
+    margin-bottom: 60px;
 }
-.omMegBtn {
-    float: right;
+
+.section2Innerdiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+    height: 40vh;
+    font-size: 1.1em;
+    line-height: 2em;
+    font-family: 'Times New Roman', Times, serif;
 }
+
+.backgroundHeader {
+    display: flex;
+    order: 0;
+}
+
+.backgroundParagraf {
+    display: flex;
+    order: 1;
+}
+
+.section3 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: lightgrey;
+    width: 100%;
+    height: 60vh;
+}
+
+.section3Innerdiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 40%;
+    height: 40vh;    
+}
+
+.kompetanseHeader {
+    display: flex;
+    order: 0;
+}
+
+.section3Innerdiv p {
+    display: flex;
+    flex-direction: row;
+    height: 18px;
+    align-items: center;
+    font-size: 1.1em;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.section4 {
+    width: 100%;
+    height: auto;
+}
+
+@media(max-width: 750px) {
+    .omMegContainer {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: absolute;
+        width: 100%;
+        height: auto;
+    }
+    .section1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url('../../images/background.jpg');
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position-y: -50vh;
+        width: 100%;
+        height: 80vh;
+    }
+}
+
+@media(max-width: 500px) {
+    .omMegContainer {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: absolute;
+        width: 800px;
+        height: auto;
+    }
+    .section1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url('../../images/background.jpg');
+        background-attachment: fixed;
+        background-position-y: -50vh;
+        background-position-x: -70vw;
+        width: 100%;
+        height: 80vh;
+    }
+    .section2 {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background: #FFFFFF;;
+        width: 100%;
+        height: 40vh;
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+    .section2Innerdiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 80%;
+        height: 40vh;
+        font-size: 1.1em;
+        line-height: 2em;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    .section3 {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background: lightgrey;
+        width: 100%;
+        height: 60vh;
+    }
+    
+    .section3Innerdiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 80%;
+        height: 40vh;    
+    }
+}
+*/

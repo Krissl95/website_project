@@ -3,7 +3,7 @@
 }
 .innerMainMatTrening {
     height: 600px;
-    width: 1000px;
+    width: 100%;
     position: absolute;
     margin: auto;
     top: 0;
@@ -89,3 +89,72 @@
 .rightDivMatTrening:hover {
     width: 98%;
 }
+
+.loadingDivMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+@media screen and (max-width: 1050px) {
+    .mainMatTrening {
+        width: 100%;
+    }
+    .mainDivMatTrening {
+        height: 300px;
+        width: 90%;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 8px;
+        display: inline-grid;
+        grid-template-columns: 100%;
+    }
+
+    .innerMainMatTrening {
+       display: none;
+    }
+
+    .leftDivMatTrening {
+        background-image: url('../../images/pexels-lukas-616401.jpg');
+        background-size: 100%;
+        width: 85%;
+        height: 90%;
+        border-radius: 8px;
+        margin: 15px 15px 15px 15px;
+        margin: auto;
+        display: inline-grid;
+        grid-template-columns: 100%;
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    }
+
+    .rightDivMatTrening {
+        background-image: url('../../images/background.jpg');
+        background-size: 100%;
+        width: 85%;
+        height: 90%;
+        border-radius: 8px;
+        margin: 15px 15px 15px 15px;
+        margin: auto;
+        display: inline-grid;
+        grid-template-columns: 100%;
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    }
+
+    .leftDivMatTrening:hover {
+        width: 85%;
+    }
+
+    .rightDivMatTrening:hover {
+        width: 85%;
+    }
+}
+

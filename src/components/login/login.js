@@ -1,90 +1,76 @@
-import { Link } from 'react-router-dom';
-import React from 'react';
-import styles from './styles';
+import React, { useState } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
+import './styles.css'
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import Paper from '@material-ui/core/Paper';
-import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 const firebase = require("firebase");
 
-class LoginComponent extends React.Component {
+export default function Login() {
 
-    constructor() {
-        super();
+    const history = useHistory();
 
-        this.state = {
-            email: null, 
-            password: null,
-            loginError: ''
-        }
-    }
+    const [email, setEmail] = useState(null)
+    const [password, setPassword] = useState(null)
+    const [loginErr, setLogginErr] = useState('')
 
-    render() {
-
-        const { classes } = this.props;
-
-        return(
-            <main className={classes.main}>
-                <Paper className={classes.paper}>
-                    <Typography component='h1' variant='h5'>
-                        Log In!
-                    </Typography>
-                    <form className={classes.form} onSubmit={(e) => this.submitLogin(e)}>
-                        <FormControl required fullWidth margin='normal'>
-                            <InputLabel htmlFor='login-email-input'>Fyll inn Epost</InputLabel>
-                            <Input autoComplete='email' autoFocus id='login-email-input' onChange={(e) => this.userTyping('email', e)}></Input>
-                        </FormControl>
-                        <FormControl required fullWidth margin='normal'>
-                            <InputLabel htmlFor='login-password-input'>Fyll inn passord</InputLabel>
-                            <Input type='password' id='login-password-input' onChange={(e) => this.userTyping('password', e)}></Input>
-                        </FormControl>
-                        <Button type='submit' fullWidth variant='contained' color='primary' className={classes.submit}>Log In</Button>
-                    </form>
-                    {
-                        this.state.loginError ?
-                        <Typography className={classes.errorText} component='h5' variant='h6'>
-                            Feil brukernavn eller passord..
-                        </Typography> :
-                        null
-                    }
-                    <Typography component='h5' variant='h6' className={classes.noAccountHeader}>Har ikke bruker?</Typography>
-                    <Link className={classes.signUpLink} to='/signup'>Opprett bruker!</Link>
-                </Paper>
-            </main>
-        );
-    }
-
-    userTyping = (type, e) => {
+    function userTyping(type, e) {
         switch (type) {
             case 'email':
-                this.setState({ email: e.target.value });
+                setEmail(e.target.value)
                 break;
             case 'password':
-                this.setState({ password: e.target.value });
+                setPassword(e.target.value)
                 break;
             default:
                 break;
         }
     }
 
-    submitLogin = (e) => {
+    function submitLogin(e) {
         e.preventDefault();
         
         firebase
         .auth()
-        .signInWithEmailAndPassword(this.state.email, this.state.password)
+        .signInWithEmailAndPassword(email, password)
         .then(() => {
-            this.props.history.push('/fellesinfo');
+            history.push('/fellesinfo');
         }, err => {
-            this.setState({ loginError: 'Server error' });
+            setLogginErr('Server error')
             console.log(err);
         });
     }
 
+    return(
+        <main className="main">
+            <Paper className="paper">
+                <Typography className="loginHeader" component='h1' variant='h5'>
+                    Logg In!
+                </Typography>
+                <form className="loginForm" onSubmit={(e) => submitLogin(e)}>
+                    <FormControl required fullWidth margin='normal'>
+                        <InputLabel htmlFor='login-email-input'>Fyll inn Epost</InputLabel>
+                        <Input autoComplete='email' autoFocus id='login-email-input' onChange={(e) => userTyping('email', e)}></Input>
+                    </FormControl>
+                    <FormControl required fullWidth margin='normal'>
+                        <InputLabel htmlFor='login-password-input'>Fyll inn passord</InputLabel>
+                        <Input type='password' id='login-password-input' onChange={(e) => userTyping('password', e)}></Input>
+                    </FormControl>
+                    <Button type='submit' fullWidth variant='contained' color='primary' className="formSubmit">Log In</Button>
+                </form>
+                {
+                    loginErr ?
+                    <Typography className="formErrorText" component='h5' variant='h6'>
+                        Feil brukernavn eller passord..
+                    </Typography> :
+                    null
+                }
+                <NavLink className="signupLink" to='/signup'>Opprett bruker!</NavLink>
+            </Paper>
+        </main>
+    )
 }
-
-export default withStyles(styles)(LoginComponent);

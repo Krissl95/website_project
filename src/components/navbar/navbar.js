@@ -1,115 +1,106 @@
-import React from 'react'
-import { Route, Link } from 'react-router-dom'
-import LandingPageComponent from '../landingpage/landingPage'
-import OmMegComponent from '../om-meg/omMeg'
-import BildeGalleriComponent from '../bildegalleri/bildegalleri'
-import Coaching from '../coaching/coaching'
-import Trening from '../trening/trening'
-import Kosthold from '../kosthold/kosthold'
-import FellesInfo from '../fellesinfo/fellesinfo'
-import MatTrening from '../mat&trening/mat&trening'
-import LoginComponent from '../login/login'
-import SignupComponent from '../signup/signup'
-import DashboardComponent from '../dashboard/dashboard'
-import AdminPanel from '../adminpanel/adminpanel'
+import React, { useState, useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 import './Navbar.css'
-
 
 const firebase = require("firebase");
 
-class Navbar extends React.Component {
-    constructor(props) {
-        super(props);
+export default function Navbar() {
+    // React Hooks - useState / useEffect
+    const [isOpen, setIsOpen] = useState(false)
+    const [loggedIn, setLoggedIn] = useState(false)
+    const [userName, setUserName] = useState(false)
 
-        this.handleClick = this.handleClick.bind(this);
-
-        this.state = {
-            isOpen: false,
-            loggedIn: false,
-            userName: false,
-            adminok: 'Hello'
-        }
-    }
-    handleClick() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
-    render() {
-        return(
-            <div>
-                <div className="App-container">
-                <header className="App-header">
-                    <h1>Roger Holsether</h1>
-                </header>
-                <div className="burger" onClick={this.handleClick}>
-                        <div className={this.state.isOpen ? 'line1':'undefined'}></div>
-                        <div className={this.state.isOpen ? 'line2':'undefined'}></div>
-                        <div className={this.state.isOpen ? 'line3':'undefined'}></div>
-                </div>
-                <div className="App-navbar">
-                    <ul onClick={this.handleClick} className={this.state.isOpen ? 'showNav':'undefined'}>
-                        <li className={this.state.loggedIn ? 'hideNav':'showNav'}><Link to="/">Hjem</Link></li>
-                        <li className={this.state.loggedIn ? 'hideNav':'showNav'}><Link to="/om-meg">Om meg</Link></li>
-                        <li className={this.state.loggedIn ? 'hideNav':'showNav'}><Link to="/bildegalleri">Galleri</Link></li>
-                        <li className={this.state.loggedIn ? 'hideNav':'showNav'}><Link to="/coaching">Coaching</Link></li>
-                        <li className={this.state.loggedIn ? 'hideNav':'showNav'}><Link to="/trening">Trening</Link></li>
-                        <li className={this.state.loggedIn ? 'hideNav':'showNav'}><Link to="/kosthold">Kosthold</Link></li>
-                        <li className={this.state.loggedIn ? 'hideNav':'showNav'}><Link to="/login">Log In</Link></li>
-                        <li className={this.state.loggedIn ? 'showNav':'hideNav'}><Link to="/fellesinfo">Felles Informasjon</Link></li>
-                        {
-                          this.state.userName ?  
-                          <li className={this.state.loggedIn ? 'showNav':'hideNav'}><Link to="/adminpanel">Adminpanel</Link></li> 
-                          :
-                          <li className={this.state.loggedIn ? 'showNav':'hideNav'}><Link to="/mat&trening">Matplan/Treningsplan</Link></li>
-                        }
-                        <li className={this.state.loggedIn ? 'showNav':'hideNav'}><Link to="/bildegalleri">Galleri</Link></li>
-                        <li className={this.state.loggedIn ? 'showNav':'hideNav'}><Link to="/dashboard">Chat</Link></li>
-                        <li onClick={this.signOut} className={this.state.loggedIn ? 'showNav':'hideNav'}><Link to="/login">Log Ut</Link></li>
-                    </ul>
-                    
-                </div>
-                </div>
-                <div className="App-intro">
-                    <Route exact path={"/"} component={LandingPageComponent}/>
-                    <Route exact path={"/om-meg"} component={OmMegComponent}/>
-                    <Route exact path={"/bildegalleri"} component={BildeGalleriComponent} />
-                    <Route exact path={"/coaching"} component={Coaching}/>
-                    <Route exact path={"/trening"} component={Trening}/>
-                    <Route exact path={"/kosthold"} component={Kosthold}/>
-                    <Route exact path={"/fellesinfo"} component={FellesInfo}/>
-                    <Route exact path={"/mat&trening"} component={MatTrening}/>
-                    <Route exact path={"/login"} component={LoginComponent}/>
-                    <Route exact path={"/signup"} component={SignupComponent}/>
-                    <Route exact path={"/dashboard"} component={DashboardComponent}/>
-                    <Route exact path={"/adminpanel"} component={AdminPanel}/>
-                </div>
-            </div>
-        );
-    }
-
-    signOut = () => firebase.auth().signOut();
-
-    componentDidMount = () => {
+    useEffect(() => {
         firebase.auth().onAuthStateChanged(_usr => {
             if(!_usr) {
-                this.setState({
-                    loggedIn: false
-                })
+                setLoggedIn(false)
             } else if(_usr.email === 'kriss122830@gmail.com'){
-                this.setState({
-                    userName: true,
-                    loggedIn: true
-                })
+                setUserName(true)
+                setLoggedIn(true)
             } else {
-                this.setState({
-                    userName: false,
-                    loggedIn: true
-                }) 
+                setUserName(false)
+                setLoggedIn(true)
+            }
+        })
+    })
+
+    // Logg ut funksjon
+    function signOut() {
+        firebase.auth().signOut()
+        navToggle();
+    }
+
+    function navToggle() {
+        const nav = document.querySelector('ul');
+        const navLinks = document.querySelectorAll('.navlinks');
+        
+        // Toggle Navbar
+        nav.classList.toggle('nav-active');
+
+        setIsOpen(prevState => !prevState)
+    
+        //Anitmate Navlinks
+        navLinks.forEach((link, index) => {
+            if(link.style.animation) {
+                link.style.animation = '';
+            } else {
+                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 9 + 0.5}s`;
             }
         })
     }
-
+    
+    return(
+        <nav className="navigationBar">
+            <h2 className="navbarHeader">Roger Holsether</h2>
+            <ul className={ loggedIn ? "ulNavbar" : "mobileUlNavbar" }>
+                <li onClick={() => navToggle()} className={ !loggedIn ? "navlinks" : "hideNav" }><NavLink className="link" activeClassName="active" exact to="/">Om meg</NavLink></li>
+                <li onClick={() => navToggle()} className={ !loggedIn ? "navlinks" : "hideNav" }><NavLink className="link" activeClassName="active" exact to="/coaching">Coaching</NavLink></li>
+                <li onClick={() => navToggle()} className={ !loggedIn ? "navlinks" : "hideNav" }><NavLink className="link" activeClassName="active" exact to="/login">Login</NavLink></li>
+                <li onClick={() => navToggle()} className={ loggedIn ? "navlinks" : "hideNav" }><NavLink className="link" activeClassName="active" exact to="/fellesinfo">Felles info</NavLink></li>
+                {
+                    userName ? 
+                    <li onClick={() => navToggle()} className={ loggedIn ? "navlinks" : "hideNav" }><NavLink className="link" activeClassName="active" exact to="/adminpanel">AdminPanel</NavLink></li>
+                    :
+                    <li onClick={() => navToggle()} className={ loggedIn ? "navlinks" : "hideNav" }><NavLink className="link" activeClassName="active" exact to="/mat&trening">Mat/Trening</NavLink></li>
+                }
+                {
+                    loggedIn && userName ? <li onClick={() => navToggle()} className={ loggedIn ? "navlinks" : "hideNav" }><NavLink className="link" activeClassName="active" exact to="/bildegalleri">Galleri</NavLink></li>
+                    :
+                    null
+                }
+                <li onClick={() => navToggle()} className={ loggedIn ? "navlinks" : "hideNav" }><NavLink className="link" activeClassName="active" exact to="/dashboard">Chat</NavLink></li>
+                <li onClick={() => signOut()} className={ loggedIn ? 'navlinks':'hideNav'}><NavLink className="link" activeClassName="active" exact to="/login">Logg Ut</NavLink></li>
+            </ul>
+            <div className="burgerMenu" onClick={() => navToggle()}>
+                <div className={isOpen ? 'line1':'undefined'}></div>
+                <div className={isOpen ? 'line2':'undefined'}></div>
+                <div className={isOpen ? 'line3':'undefined'}></div>
+            </div>
+        </nav>
+        /*
+        <div className="appContainer">
+            <h2 id="navbarHeader">Roger Holsether</h2>
+            <ul onClick={() => handleClick()} className={isOpen ? 'showNav':'undefined'}>
+                <li className={loggedIn ? 'hideNav':'showNav'}><NavLink activeClassName="selected" className="navLink" exact to="/">Om meg</NavLink></li>
+                <li className={loggedIn ? 'hideNav':'showNav'}><NavLink activeClassName="selected" exact to="/coaching">Coaching</NavLink></li>
+                <li className={loggedIn ? 'hideNav':'showNav'}><NavLink activeClassName="selected" exact to="/login">Log In</NavLink></li>
+                <li className={loggedIn ? 'showNav':'hideNav'}><NavLink activeClassName="selected" exact to="/fellesinfo">Felles Informasjon</NavLink></li>
+                {
+                userName ?  
+                <li className={loggedIn ? 'showNav':'hideNav'}><NavLink activeClassName="selected" exact to="/adminpanel">Adminpanel</NavLink></li> 
+                :
+                <li className={loggedIn ? 'showNav':'hideNav'}><NavLink activeClassName="selected" exact to="/mat&trening">Matplan/Treningsplan</NavLink></li>
+                }
+                <li className={loggedIn && userName ? 'showNav':'hideNav'}><NavLink activeClassName="selected" exact to="/bildegalleri">Galleri</NavLink></li>
+                <li className={loggedIn ? 'showNav':'hideNav'}><NavLink activeClassName="selected" exact to="/dashboard">Chat</NavLink></li>
+                <li onClick={() => signOut()} className={loggedIn ? 'showNav':'hideNav'}><NavLink activeClassName="selected" exact to="/login">Logg Ut</NavLink></li>
+            </ul>
+            <div className="burgerMenu" onClick={() => handleClick()}>
+                <div className={isOpen ? 'line1':'undefined'}></div>
+                <div className={isOpen ? 'line2':'undefined'}></div>
+                <div className={isOpen ? 'line3':'undefined'}></div>
+            </div>
+        </div> 
+        */
+    )
 }
-
-export default Navbar;

@@ -1,5 +1,19 @@
 .mainDivBildegalleri {
-    width: 75%;
-    min-height: 100vh;
-    margin: auto;
+    width: 100%;
+    margin-bottom: 188px;
 }
+
+.isLoadingGalleri {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+@media screen and (max-width: 750px) {
+    .mainDivBildegalleri {
+        width: 100%;
+        margin-bottom: 0px;
+    }
+}
+

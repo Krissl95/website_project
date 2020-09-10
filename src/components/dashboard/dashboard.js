@@ -14,29 +14,35 @@ class DashboardComponent extends React.Component {
         this.state = {
             selectedChat: null, 
             email: null,
-            chats: []
+            chats: [],
+            isLoggedIn: false
         };
     }
 
     render() {
         return(
-        <div className={'main-body'}>
-            <ChatListComponent 
-            history={this.props.history}
-            selectChatFn={this.selectChat}
-            chats={this.state.chats}
-            userEmail={this.state.email}
-            selectedChatIndex={this.state.selectedChat}
-            ></ChatListComponent>
-            <ChatViewComponent
-                user={this.state.email}
-                chat={this.state.chats[this.state.selectedChat]}></ChatViewComponent>
-            {
-                this.state.selectedChat !== null && !this.state.newChatFormVisible ? 
-                <ChatTextBoxComponent messageReadFn={this.messageRead} submitMessageFn={this.submitMessage}></ChatTextBoxComponent> : 
-                null
-            }
-        </div>
+            <div>
+                {
+                    !this.state.isLoggedIn ? <div style={{ marginTop: '100px' }}>Du er ikke logget inn</div> : 
+                    <div className={'main-body'}>
+                        <ChatListComponent 
+                        history={this.props.history}
+                        selectChatFn={this.selectChat}
+                        chats={this.state.chats}
+                        userEmail={this.state.email}
+                        selectedChatIndex={this.state.selectedChat}
+                        ></ChatListComponent>
+                        <ChatViewComponent
+                            user={this.state.email}
+                            chat={this.state.chats[this.state.selectedChat]}></ChatViewComponent>
+                        {
+                            this.state.selectedChat !== null && !this.state.newChatFormVisible ? 
+                            <ChatTextBoxComponent messageReadFn={this.messageRead} submitMessageFn={this.submitMessage}></ChatTextBoxComponent> : 
+                            null
+                        }
+                    </div>
+                }
+            </div>
         );
     }
 
@@ -79,24 +85,35 @@ class DashboardComponent extends React.Component {
     clickedChatWhereNotSender = (chatIndex) => this.state.chats[chatIndex].messages[this.state.chats[chatIndex].messages.length - 1].sender !== this.state.email;
 
     componentDidMount = () => {
-        firebase.auth().onAuthStateChanged(async _usr => {
-            if(!_usr)
-            this.props.history.push('/login');
-            else {
-                await firebase
-                .firestore()
-                .collection('chats')
-                .where('users', 'array-contains', _usr.email)
-                .onSnapshot(async res => {
-                    const chats = res.docs.map(_doc => _doc.data());
-                    await this.setState({ 
-                        email: _usr.email,
-                        chats: chats
-                     });
-                     console.log(this.state);
-                })
-            }
-        })
+        const currentUser = firebase.auth().currentUser
+        if(currentUser) {
+            this.setState({
+                isLoggedIn: true
+            })
+            firebase.auth().onAuthStateChanged(async _usr => {
+                if(!_usr)
+                this.props.history.push('/login');
+                else {
+                    await firebase
+                    .firestore()
+                    .collection('chats')
+                    .where('users', 'array-contains', _usr.email)
+                    .onSnapshot(async res => {
+                        const chats = res.docs.map(_doc => _doc.data());
+                        await this.setState({ 
+                            email: _usr.email,
+                            chats: chats
+                         });
+                         console.log(this.state);
+                    })
+                }
+            })
+        } else {
+            this.setState({
+                isLoggedIn: false
+            })
+            console.log('Du er ikke logget inn')
+        }
     }
 
 }

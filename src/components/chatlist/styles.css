@@ -1,10 +1,16 @@
 .chatlist-main-div {
   position: absolute;
+  top: 70px;
   left: 0;
   width: 300px;
-  height: 100vh;
+  height: 92.8vh; 
   box-shadow: 0px 0px 2px black;
   overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 1;
+}
+.chatlist-list {
+  display: block;
 }
 .listItem {
   cursor: pointer;
@@ -13,21 +19,15 @@
   color: red;
 }
 
-@media all and (max-width: 900px) {
+@media screen and (max-width: 900px) {
   .chatlist-main-div {
-    position: relative;
-    height: 110px;
+    position: absolute;
+    top: 70px;
+    left: 0;
     width: 100%;
+    height: 20vh; 
     box-shadow: 0px 0px 2px black;
     overflow-y: scroll;
-  }
-  .chatlist-list {
-    height: auto;
-    width: 100%;
-  }
-  .listItem {
-    height: 50px;
-    width: 100vw;
-    cursor: pointer;
+    z-index: 0;
   }
 }

@@ -17,40 +17,41 @@ class ChatListComponent extends React.Component {
                 <main className='chatlist-main-div'>
                     <List className='chatlist-list'>
                         {
-                            this.props.chats.map((_chat, _index) => {
-                                return(
-                                    <div key={_index}>
-                                        <ListItem 
-                                            onClick={() => this.selectChat(_index)} 
-                                            className='listItem' 
-                                            selected={this.props.selectedChatIndex === _index} 
-                                                >
-                                                <ListItemAvatar>
-                                                    <Avatar alt='Remy Sharp'>{_chat.users.filter(_user => _user !== this.props.userEmail)[0].split('')[0]}</Avatar>
-                                                </ListItemAvatar>
-                                                <ListItemText
-                                                primary={_chat.users.filter(_user => _user !== this.props.userEmail)[0]}
-                                                secondary={
-                                                    <React.Fragment>
-                                                        <Typography component='span' color='textPrimary'>
-                                                            {
-                                                                _chat.messages[_chat.messages.length - 1].message.substring(0, 30)
-                                                            }
-                                                        </Typography>
-                                                    </React.Fragment>
-                                                    }>                                            
-                                                </ListItemText>
-                                                {
-                                                  _chat.receiverHasRead === false && !this.userIsSender(_chat) ?
-                                                  <ListItemIcon>
-                                                      <NotificationImportant className='unreadMessage'></NotificationImportant>
-                                                  </ListItemIcon> : null
-                                                }
-                                        </ListItem>
-                                        <Divider></Divider>
-                                    </div>
-                                )
-                            })
+                        this.props.chats.map((_chat, _index) => {
+                            return(
+                                <div key={_index} className="listDiv">
+                                    <ListItem 
+                                        onClick={() => this.selectChat(_index)} 
+                                        className='listItem' 
+                                        selected={this.props.selectedChatIndex === _index} 
+                                            >
+                                            <ListItemAvatar>
+                                                <Avatar className="avatar" alt='Remy Sharp'>{_chat.users.filter(_user => _user !== this.props.userEmail)[0].split('')[0]}</Avatar>
+                                            </ListItemAvatar>
+                                            <ListItemText
+                                            className="primaryText"
+                                            primary={_chat.users.filter(_user => _user !== this.props.userEmail)[0]}
+                                            secondary={
+                                                <React.Fragment>
+                                                    <Typography className="listText" component='span'>
+                                                        {
+                                                            _chat.messages[_chat.messages.length - 1].message.substring(0, 30)
+                                                        }
+                                                    </Typography>
+                                                </React.Fragment>
+                                                }>                                            
+                                            </ListItemText>
+                                            {
+                                                _chat.receiverHasRead === false && !this.userIsSender(_chat) ?
+                                                <ListItemIcon>
+                                                    <NotificationImportant className='unreadMessage'></NotificationImportant>
+                                                </ListItemIcon> : null
+                                            }
+                                    </ListItem>
+                                    <Divider></Divider>
+                                </div>
+                            )
+                        })
                         }
                     </List>
                 </main>

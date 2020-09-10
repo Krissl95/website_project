@@ -6,7 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const firebase = require("firebase");
 
-const ImageGrid = ({ setSelectedImg, loggedIn }) => {
+const ImageGrid = ({ loggedIn }) => {
 
 
     const [delImg, setDelImg] = useState(null)
@@ -33,25 +33,28 @@ const ImageGrid = ({ setSelectedImg, loggedIn }) => {
     }
 
     return(
-        <div className="img-grid">
-            { docs && docs.map(doc => (
-                <div className="img-wrap" key={doc.id}>
-                    <img src={doc.url} alt="uploaded pic" onClick={() => setSelectedImg(doc.url)} />
-                    {
-                        loggedIn ? 
-                        <Button
-                        onClick={() => setDelImg(doc.id)}
-                        variant="contained"
-                        color="secondary"
-                        style={{position: 'absolute', top: 0, right: 0}}
-                        startIcon={<DeleteIcon />}
-                      >
-                        Slett
-                      </Button>
-                        : null
-                    }
-                </div>
-            ))}
+        <div className="img-container">
+            <div className="img-grid">
+                { docs && docs.map(doc => (
+                    <div className={loggedIn ? "img-wrap-loggedIn" : "img-wrap"} key={doc.id}>
+                        {
+                            loggedIn ? 
+                            <Button
+                            onClick={() => setDelImg(doc.id)}
+                            variant="contained"
+                            color="secondary"
+                            className="imageGalleryBtn"
+                            startIcon={<DeleteIcon />}
+                        >
+                            Slett
+                        </Button>
+                            : null
+                        }
+                        <img className="images" src={doc.url} alt="uploaded pic" />
+                    </div>
+                ))
+                }
+            </div>
         </div>
     )
 }

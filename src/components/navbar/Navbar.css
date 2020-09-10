@@ -1,37 +1,149 @@
-  .App-header {
-    color: #fff; 
-    line-height: 5vh;
-    margin-left: 35px;
-    font-size: 0.8em;
-    font-family: Georgia, serif;
+.navigationBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 71px;
+  background: #263238;
+  z-index: 1;
+}
+
+.ulNavbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 70px;
+  width: 700px;
+  margin: 0;
+  padding: 0;
+}
+
+.mobileUlNavbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 70px;
+  width: 400px;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.link {
+  padding: 10px 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #FFFFFF; 
+}
+
+.link:hover {
+  transition: all .5s ease-in-out;
+  border-radius: 8px;
+  color: #f5f4f3;
+  background: #686868;
+}
+
+.active {
+  border-radius: 8px;
+  color: #f5f4f3;
+  background: #686868;
+}
+
+.navbarHeader {
+  color: #FFFFFF;
+  margin-left: 30px;
+  text-transform: uppercase;
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 2px;
+}
+
+.burderMenu {
+  display: none;
+}
+
+.hideNav {
+  display: none;
+}
+@media screen and (max-width: 1050px) {
+  body {
+      overflow-x: hidden;
   }
-  /* Css for responsive navigation */
-  .burger {
-    position: absolute;
-    top: 15px;
-    right: 0;
-    left: 0;
+
+  .navigationBar {
+      position: fixed;
   }
-  .burger div{
-    width: 25px;
-    height: 3px;
-    background-color: #fff;
-    margin-left: 20px;
-    margin: 0 0 5px 15px;
-    transition: all 0.3s ease;
+
+  .ulNavbar {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 70px;
+      right: 0;
+      width: 100%;
+      height: 50vh;
+      background: #263238;
+      transform: translateX(100%);
+      transition: transform .3s ease-in;
   }
-  ul { 
-    list-style-type: none; 
-    height: 0px;
-    overflow: hidden;
+
+  .mobileUlNavbar {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 70px;
+      right: 0;
+      width: 100%;
+      height: 50vh;
+      background: #263238;
+      transform: translateX(100%);
+      transition: transform .3s ease-in;
   }
-  .showNav {
-    height: auto;
-    padding-bottom: 10px;
+
+  .navlinks {
+    opacity: 0;
   }
-  .hideNav {
-    display: none;
+
+  .burgerMenu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      position: absolute;
+      right: 25px;
+      width: 25px;
+      height: 25px;
   }
+  
+  .burgerMenu div {
+      display: flex;
+      width: 25px;
+      height: 3px;
+      background: #FFFFFF;
+      transition: all 0.3s ease;
+  }
+
+  .nav-active {
+      transform: translateX(0%);
+  }
+
   .line1 {
     transform: rotate(-45deg) translate(-5px, 6px);
   }
@@ -41,80 +153,15 @@
   .line3 {
     transform: rotate(45deg) translate(-5px, -6px);
   }
-  
-  @media screen and (min-width: 900px) {
-    .burger { display: none; }
-    .App-container {
-      top: 0;
-      right: 0;
-      left: 0;
-      background-color: #263238;
-    }
-    .App-header {
-      display: inline-block;
-    }
-    .App-navbar { 
-      display: inline-block; 
-      float: right; 
-      line-height: 5vh; 
-    }
-    ul { 
-      list-style-type: none; 
-      height: auto;
-    }
-    .showNav {
-      height: auto;
-    }
-    ul li { 
-      display: inline-block; 
-    }
-    ul li a {
-      color: #fff;
-      text-decoration: none;
-      padding-right: 30px;
-      font-size: 1em;
-      font-family: Georgia, serif;
-      text-transform: capitalize;
-    }
-    ul li a:hover {
-      text-decoration: underline;
-    }
+
+  @keyframes navLinkFade {
+      from {
+          opacity: 0;
+          transform: translateX(50px);
+      } 
+      to {
+          opacity: 1;
+          transform: translateX(0px);
+      }
   }
-  
-  @media screen and (max-width: 900px) {
-    .App-container {
-      top: 0;
-      right: 0;
-      left: 0;
-      background-color: #263238;
-    }
-    .App-header {
-      text-align: center;
-      font-size: 0.7em;
-      color: #fff;
-    }
-    ul {
-      text-align: center;
-      padding-bottom: 0px;
-    }
-    ul li { 
-      padding-top: 20px;
-      display: block; 
-    }
-    ul li a {
-      color: #fff;
-      text-decoration: none;
-      padding-right: 30px;
-      padding-left: 30px;
-      font-size: 1em;
-      font-family: Georgia, serif;
-      text-transform: capitalize;
-    }
-    .showNav {
-      height: auto;
-      padding-bottom: 10px;
-    }
-    .hideNav {
-      display: none;
-    }
-  }
+}

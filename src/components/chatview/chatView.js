@@ -17,7 +17,7 @@ class ChatViewComponent extends React.Component {
             return(<main id='chatview-container' className='content'></main>);
         } else {
             return(
-                <div>
+                <div className="chatViewContainer">
                     <div className='chatHeader'>
                         Din samtale med {chat.users.filter(_usr => _usr !== user)[0]}
                     </div>

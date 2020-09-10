@@ -1,11 +1,9 @@
 * { margin: 0; padding: 0; }
 
-.Page-container {
+.pageSection {
     display: flex; 
     flex-direction: column;
-    min-height: 100vh; 
+    min-height: 90vh;
 }
-.Navbar-section {
-    flex: 1;
-}
+
 
