@@ -34,7 +34,7 @@ const ImageGrid = ({ loggedIn }) => {
 
     return(
         <div className="img-container">
-            <div className="img-grid">
+            <div className={loggedIn ? "img-grid-loggedIn" : "img-grid"}>
                 { docs && docs.map(doc => (
                     <div className={loggedIn ? "img-wrap-loggedIn" : "img-wrap"} key={doc.id}>
                         {
@@ -46,11 +46,10 @@ const ImageGrid = ({ loggedIn }) => {
                             className="imageGalleryBtn"
                             startIcon={<DeleteIcon />}
                         >
-                            Slett
-                        </Button>
-                            : null
+                            <img className="images" src={doc.url} alt="uploaded pic" />
+                        </Button> 
+                            : <img className="images" src={doc.url} alt="uploaded pic" />
                         }
-                        <img className="images" src={doc.url} alt="uploaded pic" />
                     </div>
                 ))
                 }

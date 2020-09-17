@@ -1,37 +1,52 @@
 .img-container {
     width: 100%;
-    max-height: 100vh;
-    overflow-y: scroll;
+    max-height: 35vh;
+    margin-bottom: 220px;
 }
 .img-grid {
-    display: block;
-    grid-column-gap: 0;
-    column-count: 6;
-    width: 100%;
-    backface-visibility: hidden;
+    margin: auto;
+    padding: 0;
+    white-space: nowrap;
+    width: 98%;
+    overflow-x: scroll;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .img-wrap {
-    width: 100%;
-    flex-grow: 0;
+    display: inline;
+    height: 100%;
+    width: auto;
 }
 
 /* Fjerner ekstra margin-bottom hvis brukeren er innlogget */
+
+.img-grid-loggedIn {
+    margin: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    white-space: nowrap;
+    width: 98%;
+    overflow-x: scroll;
+}
+
 .img-wrap-loggedIn {
-    width: 100%;
-    flex-grow: 0;
+    display: inline;
+    height: 50%;
+    width: auto;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .imageGalleryBtn {
     position: absolute;
-    top: 30px;
     left: 0;
     cursor: pointer;
 }
 
 .images {
-    width: 100%;
-    flex-grow: 0;
+    display: inline;
+    height: 35vh;
+    width: auto;
     margin-top: -6px;
 }
 
@@ -39,17 +54,17 @@
 
 @media(max-width: 750px) {
     .img-container {
-        max-height: 100vh;
-        overflow-y: scroll;
+        width: 100%;
+        max-height: 10vh;
     }
 
     .img-grid {
-        display: block;
-        column-count: 2;
-        width: 100%;
-        padding-bottom: 34px;
-        backface-visibility: hidden;
+        margin: auto;
+        padding: 0;
+        white-space: nowrap;
+        width: 98%;
+        overflow-x: scroll;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 }
-
 

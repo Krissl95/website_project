@@ -1,3 +1,4 @@
+import { indigo } from '@material-ui/core/colors';
 import React from 'react'
 import './styles.css'
 
@@ -24,11 +25,15 @@ class ChatViewComponent extends React.Component {
                     <main id='chatview-container' className='content'>
                         {
                         chat.messages.map((_msg, _index) => {
-                            return(
-                                <div key={_index} className={_msg.sender === user ? 'userSent' : 'friendSent'}>
-                                    {_msg.message}
-                                </div>
-                            );
+                            if(_index === 0) {
+                                return null
+                            } else {
+                                return(
+                                    <div key={_index} className={_msg.sender === user ? 'userSent' : 'friendSent'}>
+                                        {_msg.message}
+                                    </div>
+                                );
+                            }
                         })  
                         }
                     </main>

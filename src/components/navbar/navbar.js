@@ -53,7 +53,8 @@ export default function Navbar() {
         <nav className="navigationBar">
             <h2 className="navbarHeader">Roger Holsether</h2>
             <ul className={ loggedIn ? "ulNavbar" : "mobileUlNavbar" }>
-                <li onClick={() => navToggle()} className={ !loggedIn ? "navlinks" : "hideNav" }><NavLink className="link" activeClassName="active" exact to="/">Om meg</NavLink></li>
+                <li onClick={() => navToggle()} className={ !loggedIn ? "navlinks" : "hideNav" }><NavLink className="link" activeClassName="active" exact to="/">Hjem</NavLink></li>
+                <li onClick={() => navToggle()} className={ !loggedIn ? "navlinks" : "hideNav" }><NavLink className="link" activeClassName="active" exact to="/om-meg">Om meg</NavLink></li>
                 <li onClick={() => navToggle()} className={ !loggedIn ? "navlinks" : "hideNav" }><NavLink className="link" activeClassName="active" exact to="/coaching">Coaching</NavLink></li>
                 <li onClick={() => navToggle()} className={ !loggedIn ? "navlinks" : "hideNav" }><NavLink className="link" activeClassName="active" exact to="/login">Login</NavLink></li>
                 <li onClick={() => navToggle()} className={ loggedIn ? "navlinks" : "hideNav" }><NavLink className="link" activeClassName="active" exact to="/fellesinfo">Felles info</NavLink></li>

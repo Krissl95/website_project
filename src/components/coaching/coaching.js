@@ -1,68 +1,54 @@
 import React from 'react'
-import profilBilde from '../../images/bilde2.jpg'
-import profilBilde2 from '../../images/bilde4.jpg'
-import Footer from '../footer/footer'
+import Slider from 'react-slick'
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 import './styles.css'
 
+const Coaching = () => {
 
-class Coaching extends React.Component {
-    render() {
-        return(
-            <main className="coachingMainContainer">
-                <section className="introSection">
-                    
-                </section>
-                <section className="coachingSection1">
-                    <div className="coachingInnerDivSection1">
-                        <div className="coachingText">
-                            <h1>Coaching</h1>
-                            <p>Som coach hjelper jeg deg med å sette realistiske målsetninger, og du vil få en skreddersydd plan som vil hjelpe deg til å nå målene dine. Både trening og kosthold blir tilpasset din hverdag og dine ønsker så langt det lar seg gjøre slik at endringene du må gjøre i hverdagen bli så behagelige som mulig. Det er alltid det som fungerer i lengden som vi gi deg de beste og de langvarige resultatene. Jeg vil ikke holde deg i hånden gjennom denne prosessen, men jeg vil stille krav samtidig som jeg støtte og motivere deg gjennom en regelmessig oppfølging. </p>
-                        </div>
-                        <img className="coachingBilde" src={profilBilde} alt="profilBilde" />
-                    </div>
-                </section>
-                <section className="coachingSection3">
-                    <div className="section3innerdiv">
-                        <img className="coachingBilde2" src={profilBilde2} alt="profilBilde" />
-                        <div className="section3text">
-                            <h1>Spesialiteter</h1>
-                            <p>&rsaquo; Vektnedgang</p>
-                            <p>&rsaquo; Fettforbrenning</p>
-                            <p>&rsaquo; Økt styrke</p>
-                            <p>&rsaquo; Muskelvekst</p>
-                            <p>&rsaquo; Idrettsspesifikk trening</p>
-                            <p>&rsaquo; Skadeforebygging og rehabilitering av skader</p>
-                            <p>&rsaquo; Fitness og kroppsbygging</p>
-                            <p>&rsaquo; Livsstilforandring</p>
-                        </div>
-                    </div>
-                        <div className="section3text2">
-                            <div>
-                            <h1>Erfaringer</h1>
-                            <p>&rsaquo; Snart 30 år med idrett og styrketrening</p>
-                            <p>&rsaquo; 8 år som ishockeytrener</p>
-                            <p>&rsaquo; 3 år som hovedtrener for Gjøvik Hockey A-lag i 1 og 2 divisjon</p>
-                            <p>&rsaquo; 10 år som personlig trener</p>
-                            <p>&rsaquo; Coaching i fitness og kroppsbygging for Team 24fitness med mange topplasseringer</p>
-                            <p>&rsaquo; 7 år som klassisk kroppsbygger med flere topplasseringer</p>  
-                            </div>
-                        </div>
-                </section>
-                <div className="sectionForMobile">
-                    <div className="sectionForMobileInner">
-                        <h1>Erfaringer</h1>
-                        <p>&rsaquo; Snart 30 år med idrett og styrketrening</p>
-                        <p>&rsaquo; 8 år som ishockeytrener</p>
-                        <p>&rsaquo; 3 år som hovedtrener for Gjøvik Hockey A-lag i 1 og 2 divisjon</p>
-                        <p>&rsaquo; 10 år som personlig trener</p>
-                        <p>&rsaquo; Coaching i fitness og kroppsbygging for Team 24fitness med mange topplasseringer</p>
-                        <p>&rsaquo; 7 år som klassisk kroppsbygger med flere topplasseringer</p>  
-                    </div>
+    return(
+        <div className="appWrapper">
+            <div className="wrapper">
+                <Slider
+                speed={700}
+                slidesToScroll={1}
+                slidesToScroll={1}
+                infinite={true}
+                dots={true}
+                arrows={true}
+                >
+                <div className="textContainer">
+                    <div className="circle">1</div>
+                    <h2>Kartlegging</h2>
+                    <p>
+                        Det hele starter med at du velger en pakke som passer deg. Når det er gjort innhenter jeg relevant informasjon som jeg trenger for å designe et individuelt oppsett til deg. Dette gjøres ved at du får tilsendt et spørreskjema på e-post som du må besvare før jeg kan designe kost og treningsplan etter din data og dine målsetninger. 
+                    </p>
                 </div>
-                <Footer />
-            </main>
-        );
-    }
+                <div className="textContainer">
+                    <div className="circle">2</div>
+                    <h2>Leveranse</h2>
+                    <p>
+                        Når jeg har utarbeidet din individuelle plan vil den bli lagt inn på din side. Den vil inneholde alt du trenger steg for steg, samt relevant informasjon, generelle råd og tips om etterlevelse og tilpassing i din hverdag.
+                    </p>
+                </div>
+                <div className="textContainer">
+                    <div className="circle">3</div>
+                    <h2>Kommunikasjon </h2>
+                    <p>
+                        Du kan kommunisere ubegrenset med meg via chatt på din side underveis. Her kan du stille alle spørsmål eller komme med tilbakemeldinger om utfordringer, oppturer, nedturer osv. sånn at jeg kan hjelpe deg hele veien igjennom denne prosessen. 
+                    </p>
+                </div>
+                <div className="textContainer">
+                    <div className="circle">4</div>
+                    <h2>Oppfølging</h2>
+                    <p>
+                        Vedlagt dine individuelle planer får du en oversikt over faste oppfølginger gjennom ditt forløp. Her må du selv rapportere med bestemt data og bilder sånn at jeg kan evaluere din fremgang og gjøre nødvendige justeringer og tilpasninger underveis for at du skal ha en jevn progresjon. 
+                     </p>
+                </div>
+                </Slider>
+            </div>
+        </div>
+    )
 }
 
 export default Coaching;

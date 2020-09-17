@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom'
 import './styles.css'
 
 const firebase = require("firebase");
-// const admin = require('firebase-admin');
 
 export default function Admin() {
 
@@ -171,8 +170,11 @@ export default function Admin() {
                                 return(
                                     <div className="userBox" key={index}>
                                         <div className="emailBox">
-                                            <h3>{kunde.fullName}</h3>
+                                            <h3>{kunde.fullName} ( {kunde.gender == 2 ? "Kvinne" : "Mann"} )</h3>
+                                            <div className="emailAndNumber">
                                             <p>Email: {kunde.email}</p>
+                                            <p>Telefon: {kunde.number}</p>
+                                        </div>
                                         </div>
                                         <div className="matplanBox">
                                             <div className="matplanBox1">
@@ -193,6 +195,17 @@ export default function Admin() {
                                                 <button className="buttonStyle" type="button" onClick={() => deleteTreningsplan(index)}>Slett</button>
                                                 <input type="file" onChange={(event) => uploadTreningsplan(event, index)}/>
                                             </div>
+                                        </div>
+                                        <div className="alderhøydevekt">
+                                            <p>Alder: {kunde.age}</p>
+                                            <p>Høyde: {kunde.height} cm</p>
+                                            <p>Vekt: {kunde.weight} kg</p>
+                                        </div>
+                                        <div className="adresse">
+                                            <p>Adresse: {kunde.adress}</p>
+                                        </div>
+                                        <div className="målsetting">
+                                            <p>Målsetting: {kunde.goals}</p>
                                         </div>
                                         <button className="slettBrukerBtn" onClick={() => deleteUser(index)}>Slett Bruker</button>
                                     </div>

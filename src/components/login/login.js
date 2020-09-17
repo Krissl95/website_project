@@ -53,11 +53,11 @@ export default function Login() {
                 </Typography>
                 <form className="loginForm" onSubmit={(e) => submitLogin(e)}>
                     <FormControl required fullWidth margin='normal'>
-                        <InputLabel htmlFor='login-email-input'>Fyll inn Epost</InputLabel>
+                        <InputLabel htmlFor='login-email-input'>Epost</InputLabel>
                         <Input autoComplete='email' autoFocus id='login-email-input' onChange={(e) => userTyping('email', e)}></Input>
                     </FormControl>
                     <FormControl required fullWidth margin='normal'>
-                        <InputLabel htmlFor='login-password-input'>Fyll inn passord</InputLabel>
+                        <InputLabel htmlFor='login-password-input'>Passord</InputLabel>
                         <Input type='password' id='login-password-input' onChange={(e) => userTyping('password', e)}></Input>
                     </FormControl>
                     <Button type='submit' fullWidth variant='contained' color='primary' className="formSubmit">Log In</Button>

@@ -2,6 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import Navbar from './components/navbar/navbar'
 import Footer from './components/footer/footer'
+import Hjem from './components/hjem/hjem'
 import OmMegComponent from './components/om-meg/omMeg'
 import BildeGalleriComponent from './components/bildegalleri/bildegalleri'
 import Coaching from './components/coaching/coaching'
@@ -20,7 +21,8 @@ function App() {
     <div className="Page-container">
         <header className="Navbar-section"><Navbar /></header>
         <div className="pageSection">
-          <Route exact path={"/"} component={OmMegComponent}/>
+          <Route exact path={"/"} component={Hjem}/>
+          <Route exact path={"/om-meg"} component={OmMegComponent}/>
           <Route exact path={"/bildegalleri"} component={BildeGalleriComponent} />
           <Route exact path={"/coaching"} component={Coaching}/>
           <Route exact path={"/login"} component={LoginComponent}/>

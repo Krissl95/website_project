@@ -11,9 +11,9 @@ export default function Footer() {
                         <div>
                             <h3>Kontaktinformasjon</h3>
                             <br />
-                            <p>Telefon: 90080101</p>
+                            <p>Telefon: 922 18 688</p>
                             <br />
-                            <p>Epost: roger-holsether@gmail.com</p>
+                            <p>Epost: roger11coach@gmail.com</p>
                         </div>
                         <div>
                             <br />

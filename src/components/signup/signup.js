@@ -16,8 +16,15 @@ export default function Signup() {
     const history = useHistory()
     const [fullName, setFullName] = useState(null)
     const [email, setEmail] = useState(null)
+    const [adresse, setAdresse] = useState(null)
     const [password, setPassword] = useState(null)
     const [passwordConfirmation, setPasswordConfirmation] = useState(null)
+    const [telefon, setTelefon] = useState(null)
+    const [age, setAge] = useState(null)
+    const [height, setHeight] = useState(null)
+    const [weight, setWeight] = useState(null)
+    const [gender, setGender] = useState(null)
+    const [goals, setGoals] = useState(null)
     const [signupErr, setSignupErr] = useState('')
 
     function userTyping(type, e) {
@@ -28,12 +35,32 @@ export default function Signup() {
             case 'email':
                 setEmail(e.target.value)
                 break;
+            case 'adresse':
+                setAdresse(e.target.value)
+                break;
             case 'password':
                 setPassword(e.target.value)
                 break;
             case 'passwordConfirmation':
                 setPasswordConfirmation(e.target.value)
                 break;
+            case 'telefon':
+                setTelefon(e.target.value)
+                break;
+            case 'alder':
+                setAge(e.target.value)
+                break;
+            case 'høyde':
+                setHeight(e.target.value)
+                break;
+            case 'vekt':
+                setWeight(e.target.value)
+                break;
+            case 'gender':
+                setGender(e.target.value)
+                break;
+            case 'goals':
+                setGoals(e.target.value)
             default:
                 break;
         }
@@ -48,7 +75,12 @@ export default function Signup() {
     }
 
     function submitSignup(e) {
-        e.preventDefault()
+
+        if(!fullName || !email || !adresse || !password || !passwordConfirmation || !telefon || gender === null || !age || !height || !weight || !goals) {
+            e.preventDefault()
+            alert('Alle felt må fylles ut..')
+        } else {
+            e.preventDefault()
 
         if(!passwordValid()) {
             setSignupErr('Password do not match!')
@@ -64,7 +96,14 @@ export default function Signup() {
             const userObj = {
                 fullName: fullName,
                 email: authRes.user.email,
-                id: authRes.user.uid
+                adress: adresse, 
+                id: authRes.user.uid,
+                number: telefon,
+                age: age,
+                height: height,
+                weight: weight,
+                gender: gender,
+                goals: goals
             };
             const docKey = [email, 'kriss122830@gmail.com'].sort().join(':');
             firebase
@@ -82,7 +121,7 @@ export default function Signup() {
                     receiverHasRead: false,
                     users: [email, 'kriss122830@gmail.com'],
                     messages: [{
-                        message: 'En ny samtale er opprettet.',
+                        message: '',
                         sender: email
                     }]
                 });
@@ -91,6 +130,7 @@ export default function Signup() {
             console.log(authError);
             setSignupErr('Failed to add user')
         })
+        }
     }
 
     return(
@@ -100,23 +140,60 @@ export default function Signup() {
                 Opprett bruker!
             </Typography>
             <form onSubmit={(e) => submitSignup(e)} className="signupForm">
-                <FormControl required fullWidth margin='normal'>
-                    <InputLabel htmlFor='fullName'>Fyll inn fult navn</InputLabel>
-                    <Input autoComplete='firstName' onChange={(e) => userTyping('fullName', e)} autoFocus id='firstName'></Input>
-                </FormControl>
-                <FormControl required fullWidth margin='normal'>
-                    <InputLabel htmlFor='signup-email-input'>Fyll inn epost</InputLabel>
-                    <Input autoComplete='email' onChange={(e) => userTyping('email', e)} id='signup-email-input'></Input>
-                </FormControl>
-                <FormControl required fullWidth margin='normal'>
-                    <InputLabel htmlFor='signup-password-input'>Fyll inn passord</InputLabel>
-                    <Input type='password' onChange={(e) => userTyping('password', e)} id='signup-password-input'></Input>
-                </FormControl>
-                <FormControl required fullWidth margin='normal'>
-                    <InputLabel htmlFor='signup-password-confirmation-input'>Bekreft passord</InputLabel>
-                    <Input type='password' onChange={(e) => userTyping('passwordConfirmation', e)} id='signup-password-confirmation-input'></Input>
-                </FormControl>
-                <Button type='submit' fullWidth variant='contained' color='primary' className="signupSubmit">Opprett bruker</Button>
+                    <FormControl required fullWidth margin='normal'>
+                        <InputLabel htmlFor='fullName'>Fult navn</InputLabel>
+                        <Input autoComplete='firstName' onChange={(e) => userTyping('fullName', e)} autoFocus id='firstName'></Input>
+                    </FormControl>
+                    <div className="emailOgFultNavn">
+                    <FormControl required margin='normal'>
+                        <InputLabel htmlFor='signup-email-input'>Epost</InputLabel>
+                        <Input autoComplete='email' onChange={(e) => userTyping('email', e)} id='signup-email-input'></Input>
+                    </FormControl>
+                    <FormControl required  margin='normal'>
+                        <InputLabel htmlFor='signup-adresse-input'>Adresse...</InputLabel>
+                        <Input type='adress' onChange={(e) => userTyping('adresse', e)} id='signup-adresse-input'></Input>
+                    </FormControl>
+                    </div>
+                    <div className="passwordSection">
+                    <FormControl required margin='normal'>
+                        <InputLabel htmlFor='signup-password-input'>Passord</InputLabel>
+                        <Input type='password' onChange={(e) => userTyping('password', e)} id='signup-password-input'></Input>
+                    </FormControl>
+                    <FormControl required margin='normal'>
+                        <InputLabel htmlFor='signup-password-confirmation-input'>Bekreft passord</InputLabel>
+                        <Input type='password' onChange={(e) => userTyping('passwordConfirmation', e)} id='signup-password-confirmation-input'></Input>
+                    </FormControl>
+                    </div>
+                    <div className="adresseOgTelefon">
+                    <FormControl required  margin='normal'>
+                        <InputLabel htmlFor='signup-telefon-input'>Telefon...</InputLabel>
+                        <Input type='telefon' onChange={(e) => userTyping('telefon', e)} id='signup-telefon-input'></Input>
+                    </FormControl>
+                    <FormControl required  margin='normal'>
+                        <InputLabel htmlFor='signup-alder-input'>Alder...</InputLabel>
+                        <Input type='age' onChange={(e) => userTyping('alder', e)} id='signup-alder-input'></Input>
+                    </FormControl>
+                    </div>
+                    <div className="alderHøydeVekt">
+                    <FormControl required  margin='normal'>
+                        <InputLabel htmlFor='signup-høyde-input'>Høyde...</InputLabel>
+                        <Input type='height' onChange={(e) => userTyping('høyde', e)} id='signup-høyde-input'></Input>
+                    </FormControl>
+                    <FormControl required  margin='normal'>
+                        <InputLabel htmlFor='signup-vekt-input'>Vekt...</InputLabel>
+                        <Input type='weight' onChange={(e) => userTyping('vekt', e)} id='signup-vekt-input'></Input>
+                    </FormControl>
+                    </div>
+                    <br />
+                    <select onChange={(e) => userTyping('gender', e)}>
+                        <option value="0">Velg kjønn</option>
+                        <option value="1">Mann</option>
+                        <option value="2">Kvinne</option>
+                    </select>
+                    <br/>
+                    <br/> 
+                    <textarea className="textArea" onChange={(e) => userTyping('goals', e)} placeholder="Fyll inn din målsetting... *"></textarea>
+                    <Button type='submit' fullWidth variant='contained' color='primary' className="signupSubmit">Opprett bruker</Button>
             </form>
             {
                 signupErr ? 
